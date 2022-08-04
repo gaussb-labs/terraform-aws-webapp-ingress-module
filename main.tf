@@ -1,9 +1,9 @@
 locals {
-  managed_by                     = "Terraform"
-  target_group_app_name          = "app"
-  alb_listener_app_http_name     = "app_http"
-  alb_listener_app_https_name    = "app_https"
-  alb_listener_rule_app_name = "app"
+  managed_by                  = "Terraform"
+  target_group_app_name       = "app"
+  alb_listener_app_http_name  = "app_http"
+  alb_listener_app_https_name = "app_https"
+  alb_listener_rule_app_name  = "app"
 }
 
 resource "aws_lb" "alb" {
@@ -30,6 +30,17 @@ resource "aws_lb_target_group" "app" {
   port     = var.app_port
   protocol = "HTTP"
   vpc_id   = var.vpc_id
+  health_check {
+    enabled             = var.target_group_app_enabled
+    healthy_threshold   = var.target_group_app_healthy_threshold
+    unhealthy_threshold = var.target_group_app_unhealthy_threshold
+    interval            = var.target_group_app_interval
+    matcher             = var.target_group_app_matcher
+    path                = var.target_group_app_path
+    port                = var.target_group_app_port
+    protocol            = var.target_group_app_protocol
+    timeout             = var.target_group_app_timeout
+  }
   tags = {
     "Name"        = "${var.environment}-${local.target_group_app_name}"
     "ManagedBy"   = local.managed_by
