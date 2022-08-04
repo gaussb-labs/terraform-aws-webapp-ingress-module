@@ -54,46 +54,55 @@ variable "alb_access_logs_bucket_name" {
   type        = string
   description = "S3 bucket name which will be used to store load balancer access logs. Prefix <var.environment> will be added. The bucket name should be unique globally."
 }
-variable "target_group_app_enabled" {
+
+variable "target_group_healthcheck_enabled" {
   type        = bool
   description = "Enable /Disable target health check."
   default     = true
 }
-variable "target_group_app_healthy_threshold" {
+
+variable "target_group_healthcheck_healthy_threshold" {
   type        = number
   description = "Number of consecutive health checks successes required before considering an unhealthy target healthy."
   default     = 3
 }
-variable "target_group_app_unhealthy_threshold" {
+
+variable "target_group_healthcheck_unhealthy_threshold" {
   type        = number
   description = "Number of consecutive health check failures required before considering the target unhealthy."
   default     = 3
 }
-variable "target_group_app_interval" {
+
+variable "target_group_healthcheck_interval" {
   type        = number
   description = "Approximate amount of time, in seconds, between health checks of an individual target."
   default     = 30
 }
-variable "target_group_app_matcher" {
+
+variable "target_group_healthcheck_matcher" {
   type        = string
   description = "Response codes to use when checking for a healthy responses from a target."
 }
-variable "target_group_app_path" {
+
+variable "target_group_healthcheck_path" {
   type        = string
   description = "Destination for the health check request."
 }
-variable "target_group_app_port" {
+
+variable "target_group_healthcheck_port" {
   type        = string
   description = "Port to use to connect with the target."
   default     = "traffic-port"
 }
-variable "target_group_app_protocol" {
+
+variable "target_group_healthcheck_protocol" {
   type        = string
   description = "Protocol to use to connect with the target."
   default     = "HTTP"
 
 }
-variable "target_group_app_timeout" {
+
+variable "target_group_healthcheck_timeout" {
   type        = number
   description = "Amount of time, in seconds, during which no response means a failed health check."
   default     = 5
