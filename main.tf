@@ -26,10 +26,11 @@ resource "aws_lb" "alb" {
 }
 
 resource "aws_lb_target_group" "app" {
-  name     = "${var.environment}-${local.target_group_app_name}"
-  port     = var.app_port
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name                 = "${var.environment}-${local.target_group_app_name}"
+  port                 = var.app_port
+  protocol             = "HTTP"
+  vpc_id               = var.vpc_id
+  deregistration_delay = var.target_group_deregistration_delay
   health_check {
     enabled             = var.target_group_healthcheck_enabled
     healthy_threshold   = var.target_group_healthcheck_healthy_threshold

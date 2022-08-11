@@ -107,3 +107,9 @@ variable "target_group_healthcheck_timeout" {
   description = "Amount of time, in seconds, during which no response means a failed health check."
   default     = 5
 }
+
+variable "target_group_deregistration_delay" {
+  type        = number
+  description = "Amount of time, in seconds, for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused"
+  default     = 300
+}
