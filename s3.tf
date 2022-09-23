@@ -12,6 +12,13 @@ resource "aws_s3_bucket_acl" "alb_access_logs_private" {
   acl    = "private"
 }
 
+resource "aws_s3_bucket_versioning" "alb_access_logs" {
+  bucket = aws_s3_bucket.alb_access_logs.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_lifecycle_configuration" "alb_access_log_retention_policy" {
   bucket = aws_s3_bucket.alb_access_logs.id
   rule {
