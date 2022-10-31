@@ -17,3 +17,8 @@ output "app_target_group_arn" {
   description = "ARN for the application target group"
   value       = aws_lb_target_group.app.arn
 }
+
+output "app_subdomain_acm_cert_arn" {
+  description = "ARN for the application subdomain SSL certificate managed by ACM"
+  value       = aws_acm_certificate.app_subdomain.arn
+}
