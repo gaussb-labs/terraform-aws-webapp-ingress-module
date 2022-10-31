@@ -39,6 +39,11 @@ module "app_ingress" {
   target_group_healthcheck_protocol            = "HTTP"
   target_group_healthcheck_interval            = 30
   target_group_healthcheck_timeout             = 5
+  enable_failover_policy                       = true
+  primary_record_healthcheck_id                = "primary_healthcheck_id"
+  secondary_record_alias_name                  = "secondary_alias_name"
+  secondary_record_zone_id                     = "secondary_zone_id"
+  secondary_record_healthcheck_id              = "secondary_healthcheck_id" 
 }
 ```
 
@@ -83,6 +88,7 @@ No modules.
 | [aws_lb_listener_rule.app](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener_rule) | resource |
 | [aws_lb_target_group.app](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group) | resource |
 | [aws_route53_record.alb_record](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_record.secondary_alb_record](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_record.app_validation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_s3_bucket.alb_access_logs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket_acl.alb_access_logs_private](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
@@ -120,6 +126,11 @@ No modules.
 | target_group_healthcheck_port                    	| Port to use to connect with the target. Valid values are any valid port or "traffic-port". Defaults to "traffic-port".                   	| `string`       	| "traffic-port" 	| no       	|
 | target_group_healthcheck_protocol                	| Protocol to use to connect with the target. Defaults to "HTTP".                                                                          	| `string`       	| "HTTP"         	| no       	|
 | target_group_healthcheck_timeout                 	| Amount of time, in seconds, during which no response means a failed health check. Defaults to 5.                                         	| `number`       	| 5              	| no       	|
+| enable_failover_policy                            | Should enable/disable Failover policy for the subdomain record                                                                            | `bool`            | `false`           | no        |
+| primary_record_healthcheck_id                     | For Failover Routing policy only. Healthcheck Id of primary record.                                                                       | `string`          | `null`            | no        |
+| secondary_record_alias_name                       | For Failoverrouting policy only. Alias name for secondary record.                                                                         | `string`          | `null`            | no        |
+| secondary_record_healthcheck_id                   | For Failover Routing policy only. Healthcheck Id of secondary record.                                                                     | `string`          | `null`            | no        |
+| secondary_record_zone_id                          | For Failoverrouting policy only. Zone Id for secondary record.                                                                            | `string`          | `null`            | no        |
 
 ### Outputs
 

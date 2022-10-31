@@ -113,3 +113,33 @@ variable "target_group_deregistration_delay" {
   description = "Amount of time, in seconds, for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused"
   default     = 300
 }
+
+variable "enable_failover_policy" {
+  type        = bool
+  description = "Should enable/disable Failover policy for the subdomain record"
+  default     = false
+}
+
+variable "primary_record_healthcheck_id" {
+  type        = string
+  description = "For Failover Routing policy only. Healthcheck Id of primary record."
+  default     = null
+}
+
+variable "secondary_record_alias_name" {
+  type        = string
+  description = "For Failoverrouting policy only. Alias name for secondary record."
+  default     = null
+}
+
+variable "secondary_record_zone_id" {
+  type        = string
+  description = "For Failoverrouting policy only. Zone Id for secondary record."
+  default     = null
+}
+
+variable "secondary_record_healthcheck_id" {
+  type        = string
+  description = "For Failover Routing policy only. Healthcheck Id of secondary record."
+  default     = null
+}
