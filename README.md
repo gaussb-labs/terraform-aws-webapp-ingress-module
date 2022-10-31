@@ -139,6 +139,7 @@ No modules.
 | alb_arn                	| ARN for the application load balancer provisioned by the module. 	|
 | alb_http_listener_arn  	| ARN for the application load balancer HTTP listener              	|
 | alb_https_listener_arn 	| ARN for the application load balancer HTTPS listener             	|
+| app_target_group_arn 	    | ARN for the application target group             	|
 
 ### License
 MIT Licensed. See [LICENSE](https://github.com/gaussb-labs/terraform-aws-webapp-ingress-module/blob/main/LICENSE) for full details.
