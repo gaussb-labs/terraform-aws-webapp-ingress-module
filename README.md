@@ -1,15 +1,15 @@
-## Webapp Ingress Terraform Module
+# Webapp Ingress Terraform Module
 
-This module provides setup of the AWS resources needed for web traffic ingress.
-The module takes care of the following:
+This module provides setup of the AWS resources needed for web traffic ingress. The module takes care of the following:
+
 1. Setting up SSL certificate with automatic verification for the application sub-domain 
 2. Setting up application load balancer, target group and attaching the SSL certificate to the HTTPS listener
 3. Setting up S3 bucket for storing load balancer access logs
 4. Setting up the retention policy for the access logs
 
-![](./diagram.png)
+![diagram](./diagram.png)
 
-### Usage
+## Usage
 
 ```hcl
 module "app_ingress" {
@@ -48,11 +48,12 @@ module "app_ingress" {
 ```
 
 This module provides two listeners out of the box:
-#### 1. HTTP listener
-   This listener redirects the traffic to the HTTPS listener by default with HTTP Status 301 (Permanent).
-#### 2. HTTPS listener
-   This listener is responsible for SSL termination of the traffic and forwards it to the target group defined.
-   A default response can be setup via input variables.
+
+1. __HTTP listener__:
+This listener redirects the traffic to the HTTPS listener by default with HTTP Status `301(Permanent)`.
+
+2. __HTTPS listener__:
+This listener is responsible for SSL termination of the traffic and forwards it to the target group defined. A default response can be setup via input variables.
 
 Additional listener rules can be added to both these listeners outside this module.
 It is also possible to add new listeners to the application load balancer.
@@ -142,5 +143,6 @@ No modules.
 | app_target_group_arn 	    | ARN for the application target group             	                |
 | app_subdomain_acm_cert_arn| ARN for the application subdomain SSL certificate managed by ACM  |
 
-### License
+## License
+
 MIT Licensed. See [LICENSE](https://github.com/gaussb-labs/terraform-aws-webapp-ingress-module/blob/main/LICENSE) for full details.
