@@ -7,6 +7,8 @@ This module provides setup of the AWS resources needed for web traffic ingress. 
 3. Setting up S3 bucket for storing load balancer access logs
 4. Setting up the retention policy for the access logs
 
+## Architecture diagram
+
 ![diagram](./diagrams/diagram.png)
 
 ## Usage
